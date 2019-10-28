@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>Dados</h1>
+  <table *ngIf="dadosEmpresaArray.length">
+    <tr *ngFor="let dado of dadosEmpresaArray; let i = index">
+      <td><b>{{dado.key}}</b></td>
+      <td>{{dado.value}} </td>
+    </tr>
+  </table>
+  <h1>Governança</h1>
+  <table *ngIf="governancaArray.length">
+    <tr *ngFor="let governanca of governancaArray; let i = index">
+      <td><b>{{governanca.key}}</b></td>
+      <td>{{governanca.value}} </td>
+    </tr>
+  </table>
+
+  <h1>Análise Fundamentalista</h1>
+  <table class="analise-table" *ngIf="analiseFundamentalistaArray.length">
+    <div class="table-div" *ngFor="let analise of analiseFundamentalistaArray; let i = index">
+      <tr>
+        <td class="small-font" *ngIf="i === 0"><b>Ano</b></td>
+        <td class="small-font"><b>{{ analise.name }}</b></td>
+      </tr>
+      <tr *ngFor="let analiseValue of analise.series; let j = index">
+        <th class="small-font" *ngIf="i === 0"><b>{{analiseValue.name}}</b></th>
+        <td class="small-font">{{analiseValue.value || "- "}} </td>
+      </tr>
+    </div>
+  </table>
+  <select [(ngModel)]="selectedChartData" (change)="selectChartData()">
+    <option *ngFor="let key of analiseFundamentalistaKeyArray; let i = index" value="{{i}}">{{key}}</option>
+  </select>
+  <div class="chart-container">
+    <ngx-charts-line-chart *ngIf="analiseFundamentalistaArray.length" [view]="view" [scheme]="colorScheme"
+      [results]="single" [gradient]="gradient" [xAxis]="showXAxis" [yAxis]="showYAxis" [legend]="false"
+      [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel">
+    </ngx-charts-line-chart>
+  </div>
+  <div>
+    <iframe src="https://s.tradingview.com/bovespa/widgetembed/"></iframe>
+  </div>
+</div>

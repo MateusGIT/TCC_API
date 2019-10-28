@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { CdkTreeModule } from '@angular/cdk/tree';
+import { Component, ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,20 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'tcc';
+  company: object;
+  showDetails = false;
+  
+  constructor(private cdRef : ChangeDetectorRef) {
+
+  }
+
+  public getDetails(company) {
+    this.company = company;
+    this.toggleDetails();
+  }
+
+  public toggleDetails() {
+    this.showDetails = !this.showDetails;
+    this.cdRef.detectChanges();
+  }
 }

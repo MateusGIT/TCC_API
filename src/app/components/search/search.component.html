@@ -1,0 +1,13 @@
+<div class="container">
+  <mat-form-field class="full-width">
+    <textarea #input matInput placeholder="Nome da empresa"></textarea>
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="searchCompany()">Buscar</button>
+  <mat-spinner *ngIf="loading"></mat-spinner>
+
+  <mat-list>
+    <mat-list-item *ngFor="let company of companyArray; let i = index"> 
+     <a (click)="selectCompany(i)"> {{ company.dados_da_empresa.Nome }} </a>
+    </mat-list-item>
+  </mat-list>
+</div>
