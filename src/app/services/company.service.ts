@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class CompanyService {
-  uri = 'http://ec2-54-166-196-185.compute-1.amazonaws.com:4000/company';
+  uri = 'http://ec2-54-89-178-141.compute-1.amazonaws.com:4000/company';
 
   constructor(private http: HttpClient) { }
 

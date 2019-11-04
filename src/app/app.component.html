@@ -1,9 +1,12 @@
 <!-- Toolbar -->
 <div class="container">
   <div class="app-container">
-      <app-search class="search-component" *ngIf="!showDetails" (onCompanySelected)="getDetails($event)"></app-search>
-      <button *ngIf="showDetails" class="back-btn" (click)="showDetails = !showDetails" mat-raised-button color="primary">Voltar</button>
-      <app-details class="details-component" *ngIf="showDetails && company" [company]="company"></app-details>
+    <img class="logo" src="assets/logo.jpg">
+    <h1 class="mat-h1"  *ngIf="!showDetails">Portal do Holder</h1>
+    <h2 class="mat-h2" *ngIf="!showDetails">Investimento Consciente</h2>
+    <app-search class="search-component" *ngIf="!showDetails" (onCompanySelected)="getDetails($event)"></app-search>
+    <button *ngIf="showDetails" class="back-btn" (click)="showDetails = !showDetails" mat-raised-button color="primary">Voltar</button>
+    <app-details class="details-component" *ngIf="showDetails && company" [company]="company"></app-details>
   </div>
 </div>
 <router-outlet></router-outlet>

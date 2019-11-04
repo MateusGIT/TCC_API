@@ -15,10 +15,14 @@ async function getCollection () {
 }
 
 async function search (name) {
+  console.log('name', name)
   try {
     return getCollection()
     .then(async (collection) =>  collection.find({ 'dados_da_empresa.Nome':  {'$regex': `${name}`} }).toArray())
-    .then((result) => result)
+    .then((result) =>  {
+      console.log('result', result)
+      return result
+    })
   } catch (e) {
     console.log('e', e)
     return e;

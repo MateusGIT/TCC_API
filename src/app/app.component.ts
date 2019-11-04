@@ -23,5 +23,6 @@ export class AppComponent {
   public toggleDetails() {
     this.showDetails = !this.showDetails;
     this.cdRef.detectChanges();
+    window.scrollTo(0, 0)
   }
 }

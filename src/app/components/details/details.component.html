@@ -1,32 +1,39 @@
 <div class="container">
-  <h1>Dados</h1>
-  <table *ngIf="dadosEmpresaArray.length">
-    <tr *ngFor="let dado of dadosEmpresaArray; let i = index">
-      <td><b>{{dado.key}}</b></td>
-      <td>{{dado.value}} </td>
-    </tr>
-  </table>
-  <h1>Governança</h1>
-  <table *ngIf="governancaArray.length">
-    <tr *ngFor="let governanca of governancaArray; let i = index">
-      <td><b>{{governanca.key}}</b></td>
-      <td>{{governanca.value}} </td>
-    </tr>
-  </table>
+  <h1 class="mat-h1">Análise Fundamentalista</h1>
+  <h2 class="mat-h2">Dados <a *ngIf="!showDados" (click)="showDadosTable()">	&darr;</a><a *ngIf="showDados" (click)="hideDados()">&uarr;</a></h2>
+  <div *ngIf="showDados">
+    <table *ngIf="dadosEmpresaArray.length" >
+      <tr *ngFor="let dado of dadosEmpresaArray; let i = index">
+        <td><b>{{dado.key}}</b></td>
+        <td>{{dado.value}} </td>
+      </tr>
+    </table>
+  </div>
+  <h2 class="mat-h2">Governança <a *ngIf="!showGovernanca" (click)="showGovernancaTable()">	&darr;</a><a *ngIf="showGovernanca" (click)="hideGovernanca()">&uarr;</a> </h2>
+  <div *ngIf="showGovernanca">
+    <table *ngIf="governancaArray.length" >
+      <tr *ngFor="let governanca of governancaArray; let i = index">
+        <td><b>{{governanca.key}}</b></td>
+        <td>{{governanca.value}} </td>
+      </tr>
+    </table>
+  </div>
 
-  <h1>Análise Fundamentalista</h1>
-  <table class="analise-table" *ngIf="analiseFundamentalistaArray.length">
-    <div class="table-div" *ngFor="let analise of analiseFundamentalistaArray; let i = index">
-      <tr>
-        <td class="small-font" *ngIf="i === 0"><b>Ano</b></td>
-        <td class="small-font"><b>{{ analise.name }}</b></td>
-      </tr>
-      <tr *ngFor="let analiseValue of analise.series; let j = index">
-        <th class="small-font" *ngIf="i === 0"><b>{{analiseValue.name}}</b></th>
-        <td class="small-font">{{analiseValue.value || "- "}} </td>
-      </tr>
-    </div>
-  </table>
+  <h2 class="mat-h2">Demonstrativos Contábeis - Em Milhões <a *ngIf="!showContabeis" (click)="showContabeisTable()">	&darr;</a><a *ngIf="showContabeis" (click)="hideContabeis()">&uarr;</a></h2>
+  <div *ngIf="showContabeis">
+    <table class="analise-table" *ngIf="analiseFundamentalistaArrayTable.length">
+      <div class="table-div" *ngFor="let analise of analiseFundamentalistaArrayTable; let i = index">
+        <tr>
+          <td class="small-font colored-td" *ngIf="i === 0"><b>Ano</b></td>
+          <td class="small-font colored-td"><b>{{ analise.name }}</b></td>
+        </tr>
+        <tr *ngFor="let analiseValue of analise.series; let j = index">
+          <th class="small-font colored-td" *ngIf="i === 0"><b>{{analiseValue.name}}</b></th>
+          <td class="small-font"><b>{{analiseValue.value || "- "}}</b> </td>
+        </tr>
+      </div>
+    </table>
+  </div>
   <select [(ngModel)]="selectedChartData" (change)="selectChartData()">
     <option *ngFor="let key of analiseFundamentalistaKeyArray; let i = index" value="{{i}}">{{key}}</option>
   </select>
